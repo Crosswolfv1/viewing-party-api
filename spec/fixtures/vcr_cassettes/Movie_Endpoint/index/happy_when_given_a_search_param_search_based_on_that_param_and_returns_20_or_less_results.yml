@@ -1,0 +1,143 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/search/movie?api_key=<MOVIEDB_API_KEY&query=pineapple
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.10.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 04 Dec 2024 22:28:08 GMT
+      Server:
+      - openresty
+      Cache-Control:
+      - public, max-age=23883
+      X-Memc:
+      - HIT
+      X-Memc-Key:
+      - 900c060c3d95ef7887e761a9e640df85
+      X-Memc-Age:
+      - '958'
+      X-Memc-Expires:
+      - '23883'
+      Etag:
+      - W/"398d5e99418da6af27b1f4898ad3f31c"
+      Vary:
+      - Accept-Encoding,accept-encoding
+      - Origin
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 24bae83ecbea498237310499b260f272.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - IAH50-C4
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      X-Amz-Cf-Id:
+      - 1Rl1DLDPrAOd1FzzIvDs3Lx5nblf_PkqXcVFELBIJ1iwPL4DD3K7LA==
+      Age:
+      - '91'
+    body:
+      encoding: UTF-8
+      string: '{"page":1,"results":[{"adult":false,"backdrop_path":"/keZwcpEcuvy3t6a8y1OnUTPuY0i.jpg","genre_ids":[18,53],"id":567904,"original_language":"en","original_title":"Pineapple","overview":"When
+        a miner''s daughter is assaulted in the local coal mine, she utters only one
+        word, leaving the town''s sheriff baffled. The event quickly spirals out of
+        control, impacting the entire town.","popularity":0.132,"poster_path":"/naIWdjnlEwUQ5kdmMHjzjJOkhpv.jpg","release_date":"2017-01-21","title":"Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[18],"id":25578,"original_language":"en","original_title":"Pineapple","overview":"A
+        Texas publishing exec who''s on the wagon and in A.A., walks in on his wife
+        in bed with another man, and in the nasty divorce that follows, he falls off
+        the wagon and takes up Crystal. Alternating between concern for his pre-teen
+        daughter, his enjoyment of rough sex and cocaine with Crystal.","popularity":0.537,"poster_path":"/px4Vy5cyQ7QkxVh8P85HHF6dh7.jpg","release_date":"2006-05-21","title":"Pineapple","video":false,"vote_average":4.5,"vote_count":5},{"adult":false,"backdrop_path":null,"genre_ids":[],"id":732478,"original_language":"en","original_title":"Pineapple","overview":"An
+        ambitious artist struggles to bury her envy when her idle girlfriend captivates
+        the art world with an accidental masterpiece.","popularity":0.08,"poster_path":"/qEgvXundFFyRMFqm1hoaPThRQhO.jpg","release_date":"2020-08-20","title":"Pineapple","video":false,"vote_average":2.0,"vote_count":1},{"adult":false,"backdrop_path":null,"genre_ids":[28,35],"id":972274,"original_language":"en","original_title":"Pineapple","overview":"After
+        the internet in his apartment goes down, a man attempts to upload his short
+        film to a film festival as the deadline quickly approaches.","popularity":0.612,"poster_path":null,"release_date":"2021-04-24","title":"Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[35],"id":579241,"original_language":"pt","original_title":"Pineapple","overview":"","popularity":0.143,"poster_path":null,"release_date":"2017-12-18","title":"Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[],"id":1214767,"original_language":"en","original_title":"Pineapple","overview":"Ed
+        and Jane are a seemingly dull couple with a surprising secret they keep in
+        their closets.","popularity":0.344,"poster_path":"/9aqL9aOI1hpuM7o9ka06v0X5ROH.jpg","release_date":"2020-04-30","title":"Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[],"id":1233145,"original_language":"en","original_title":"Pineapple","overview":"Young
+        and single Sarah has just moved into her new apartment, only to discover her
+        next-door neighbour is an old flame, Peach. Is this Sarah’s second chance
+        to get the girl that got away? Sarah impulsively asks Peach to her housewarming
+        dinner with her a few friends (who are all exes). Over dinner, Sarah’s friends
+        quickly clash with Peach and her questionable life views. But is Sarah too
+        do-eyed to see this might be a recipe for disaster?  Pineapple is a sequel,
+        set five years on from the Director''s previous award-winning short film Peach.
+        (Also inspired by her unlucky love life). Peach, is about a young anxious
+        girl called Sarah who lands herself a hot day with a mysterious and cool girl
+        called Peach. The only problem is, she was not sure if it was a date or not?!
+        Sound relatable?","popularity":0.116,"poster_path":"/i7LeAsS2wmQbSTkgjjWj4XpvbZC.jpg","release_date":"2023-11-09","title":"Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":"/aO6Z7ErkEoahGFKYdEs4k4ilWFe.jpg","genre_ids":[28,35,80],"id":10189,"original_language":"en","original_title":"Pineapple
+        Express","overview":"A stoner and his dealer are forced to go on the run from
+        the police after the pothead witnesses a cop commit a murder.","popularity":19.596,"poster_path":"/6E50WjeOYjDZg9HXgPjYdGtY2jG.jpg","release_date":"2008-08-06","title":"Pineapple
+        Express","video":false,"vote_average":6.636,"vote_count":3785},{"adult":false,"backdrop_path":"/fG59zGSVBsrVPIPaXm87M6HJN6n.jpg","genre_ids":[10752],"id":1097508,"original_language":"ja","original_title":"パイナップル部隊","overview":"The
+        story of the role played by Japanese-American soldiers from Hawaii in the
+        Korean War of the 1950s.","popularity":0.892,"poster_path":"/6E5nZyMMKPKmtRwoTvemjnO3n5o.jpg","release_date":"1959-12-27","title":"Pineapple
+        Butai","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[10749,35],"id":574810,"original_language":"en","original_title":"Ananas
+        Spleen (Adam''s Pineapple)","overview":"Brooklyn, NY. At the next stop, Adam
+        is sure that the girl of his dreams will get on the bus and sit next to him.
+        But when he opens his eyes, all he finds is a pineapple. This is the beginning
+        of a strange relationship between the two, that nobody seems to understand.
+        Nobody, except maybe Kathleen","popularity":0.122,"poster_path":"/nqTwGlhEigBiEr3iTjQ326uTw0T.jpg","release_date":"2013-05-02","title":"Adam''s
+        Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[35,10402],"id":733073,"original_language":"pt","original_title":"Abacaxi
+        Azul","overview":"Alvarenga and Ranchinho have a law firm in a small village
+        and go to Rio de Janeiro to hire artists for the village''s radio station.","popularity":0.295,"poster_path":null,"release_date":"1944-02-14","title":"Blue
+        pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[35],"id":613747,"original_language":"ja","original_title":"パイナップル・ツアーズ","overview":"An
+        anthology film consisting of three linked stories by different directors,
+        all set on an Okinawan island. The first story, ''Aunt Reiko'' concerns an
+        opera singer who travels back to her home island to consult a spiritualist
+        about the loss of her voice. The second story, ''Haruko \u0026 Hideyoshi''
+        concerns an outsider to the island who is tricked into marrying an island
+        girl after visiting the island god of fertility with her. The final story,
+        ''Bomb Kids'' concerns two kids in a punk band who set out to win (or steal)
+        a large amount of money. Linking these stories is the ongoing search for an
+        unexploded WWII bomb, a large model pineapple, and the possibility of a hotel
+        development coming to the island...","popularity":0.39,"poster_path":"/oZ8ld7Aa6jLREbqrr8Gyy7AyFU3.jpg","release_date":"1992-04-25","title":"Pineapple
+        Tours","video":false,"vote_average":4.0,"vote_count":2},{"adult":false,"backdrop_path":null,"genre_ids":[99],"id":730219,"original_language":"ro","original_title":"Ananas","overview":"A
+        short made during quarantine. - \"I feel like I''m coming out of hibernation.
+        I did not learn anything, I did not developed personal growth, nor qualities.
+        I was smart for one day and read challenging stuff, and then for three days
+        watched persisently TV series. I couldn''t write. I found a handful of indispensable
+        people. I didn''t really understand much of this whole quarantine story; but
+        I''m analytically only retroactive, so maybe it''s going to happen. This movie
+        made me feel alive for a few days.\"","popularity":0.245,"poster_path":"/1ims9t2z9INa80cxS38vlUMZW9B.jpg","release_date":"2020-05-31","title":"Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[],"id":940472,"original_language":"ja","original_title":"パイナップル消えた","overview":"","popularity":0.001,"poster_path":"/cMV6iejnMpQ0PYBWn6Vy5LG4Iab.jpg","release_date":"1982-01-01","title":"A
+        PINEAPPLE VANISHED","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[99],"id":162764,"original_language":"fr","original_title":"Ananas","overview":"Documentary
+        about the process canned pineapple takes from cultivation to sale.","popularity":0.21,"poster_path":null,"release_date":"1984-01-01","title":"Pineapple","video":false,"vote_average":5.0,"vote_count":3},{"adult":false,"backdrop_path":"/jG81Yj66Zy4PWyShwYxrQexlCfr.jpg","genre_ids":[35],"id":1220139,"original_language":"pt","original_title":"Pizza
+        de Abacaxi e O Fim do Mundo","overview":"The motel room destroyed, a hell
+        of a hangover and a dead body; the world really should have ended.","popularity":1.1,"poster_path":"/5l1N4yWDypWfshtNLsgSs6ESGj0.jpg","release_date":"2023-12-20","title":"Pineapple
+        Pizza and The End of the World","video":false,"vote_average":9.0,"vote_count":2},{"adult":false,"backdrop_path":null,"genre_ids":[18],"id":1260580,"original_language":"ru","original_title":"Ананас","overview":"On
+        New Year''s Eve 2000, children saw a rare fruit for the first time in their
+        lives - a real pineapple! But will they be able to try it?","popularity":0.559,"poster_path":"/a1YBIZjmwQXGE0fEci8wZZo6za4.jpg","release_date":"2023-08-26","title":"Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":"/rszk4hoR4puMGfrvbLwYjYnrgZb.jpg","genre_ids":[35],"id":1337567,"original_language":"en","original_title":"Upside
+        Down Pineapple","overview":"The true story of her best friend''s mysterious
+        murder would make the perfect prime time miniseries, but can former queen
+        bee Penelope Pierce convince her reluctant clique to sign over their life
+        rights?","popularity":1.035,"poster_path":"/ij2j02MAS2XtI2bOtt3RbA8pDKq.jpg","release_date":"2024-08-31","title":"Upside
+        Down Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":null,"genre_ids":[35,18],"id":1357448,"original_language":"ar","original_title":"أناناسة","overview":"","popularity":0.001,"poster_path":null,"release_date":"","title":"Pineapple","video":false,"vote_average":0.0,"vote_count":0},{"adult":false,"backdrop_path":"/ksN2rIXoNXR9WqROGw9hovWZbaQ.jpg","genre_ids":[10402],"id":822080,"original_language":"en","original_title":"The
+        Pineapple Thief - Nothing but the Truth","overview":"Having released their
+        latest studio album Versions Of The Truth in September 2020, The Pineapple
+        Thief’s worldwide touring plans to support the release of the album had to
+        be put on hold, but the band were eager to be able to still perform for and
+        connect with their fans across the globe and so the idea for a full band performance
+        event was hatched. The Pineapple Thief’s Bruce Soord explains “I’ve always
+        said that The Pineapple Thief is equally about the studio and the stage so
+        it was obviously disappointing that we haven’t been able go out on tour especially
+        as we were excited to be able to perform the new album \"Versions Of The Truth”
+        live for everyone.  So being able to do this film, especially under the circumstances,
+        was invaluable.\"","popularity":0.35,"poster_path":"/gPkgGeMezwClBLyeWoC23NjadVj.jpg","release_date":"2021-04-22","title":"The
+        Pineapple Thief - Nothing but the Truth","video":true,"vote_average":8.0,"vote_count":1}],"total_pages":2,"total_results":36}'
+  recorded_at: Wed, 04 Dec 2024 22:29:39 GMT
+recorded_with: VCR 6.3.1
