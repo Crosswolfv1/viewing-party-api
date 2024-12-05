@@ -34,7 +34,7 @@ RSpec.describe "Movie Endpoint" do
       expect(response).not_to be_successful
       expect(response).to have_http_status(400)
       json_response = JSON.parse(response.body, symbolize_names: true)
-      expect(json_response[0][:title]).to eq("Query cannot be empty")
+      expect(json_response[:message]).to eq("Query cannot be empty")
     end
   end
 end
