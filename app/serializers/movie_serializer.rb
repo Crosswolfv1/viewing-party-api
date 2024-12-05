@@ -1,14 +1,13 @@
 class MovieSerializer
-  def self.format_movie(json)
-    top_twenty = json[:results].first(20)
-    { data: top_twenty.map do |result|
-      movie = Movie.new(result)
+  def self.format_movie(movies_list)
+
+    { data: movies_list.map do |result|
         {
-          id: movie.id,
+          id: result.id,
           type: "movie",
           attributes: {
-            title: movie.title,
-            vote_average: movie.vote_average
+            title: result.title,
+            vote_average: result.vote_average
           }
         }
     end
