@@ -6,19 +6,19 @@ class ErrorSerializer
     }
   end
 
-  private
+  # private
   
-  def self.format_errors(exception, status)
-    if exception.is_a?(ActiveRecord::RecordInvalid) || exception.is_a?(ActionController::ParameterMissing)
-      Array(exception.is_a?(ActiveRecord::RecordInvalid) ? exception.record.errors.full_messages : exception.message)
-    else
-      [
-        {
-          status: status.to_s,
-          title: exception.message
-        }
-      ]
-    end
-  end
+  # def self.format_errors(exception, status)
+  #   if exception.is_a?(ActiveRecord::RecordInvalid) || exception.is_a?(ActionController::ParameterMissing)
+  #     Array(exception.is_a?(ActiveRecord::RecordInvalid) ? exception.record.errors.full_messages : exception.message)
+  #   else
+  #     [
+  #       {
+  #         status: status.to_s,
+  #         title: exception.message
+  #       }
+  #     ]
+  #   end
+  # end
 
 end
