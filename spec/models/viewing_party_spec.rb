@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe ViewingParty, type: :model do
   describe "validations" do
-    it { should have_one :users_viewing_party}
-
+    it { should have_many :users_viewing_parties }
+    it { should have_many(:users).through(:users_viewing_parties) }
 
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:start_time) }
@@ -11,6 +11,5 @@ RSpec.describe ViewingParty, type: :model do
     it { should validate_presence_of(:movie_id) }
     it { should validate_presence_of(:movie_title) }
     it { should validate_presence_of(:invitees) }
-
   end
 end

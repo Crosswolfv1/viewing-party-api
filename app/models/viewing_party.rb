@@ -1,5 +1,6 @@
 class ViewingParty < ApplicationRecord
-  has_one :users_viewing_party
+  has_many :users_viewing_parties
+  has_many :users, through: :users_viewing_parties
 
   validates :name, presence: true
   validates :start_time, presence: true
