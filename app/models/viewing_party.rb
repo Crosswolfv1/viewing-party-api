@@ -7,5 +7,4 @@ class ViewingParty < ApplicationRecord
   validates :end_time, presence: true
   validates :movie_id, presence: true
   validates :movie_title, presence: true
-  validates :invitees, presence: true
 end
