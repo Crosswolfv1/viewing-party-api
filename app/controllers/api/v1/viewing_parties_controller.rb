@@ -29,9 +29,13 @@ class Api::V1::ViewingPartiesController < ApplicationController
   end
 
   def validate_session_length(params)
+    raise ArgumentError, "Validation failed: Movie can't be blank" unless params.has_key?(:movie_id)
     start_time = Time.parse(params[:start_time]).to_i
     end_time = Time.parse(params[:end_time]).to_i
-    binding.pry
+    party_duration = end_time - start_time
+    json = MovieSerializer.movie_details(MovieGateway.get_one_movie(params[:movie_id]))
+    movie_duration = json[:data][:runtime] * 60
+    raise ArgumentError, "Movie is too long for viewing party" unless movie_duration < party_duration
   end
 
   def validate_user(user_id)

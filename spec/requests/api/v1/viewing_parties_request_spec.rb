@@ -20,7 +20,7 @@ RSpec.describe "Viewing Parties Endpoint" do
       end_time: "2025-02-01 14:30:00",
       movie_id: 278,
       movie_title: "The Shawshank Redemption",
-      invitees: [@user2.id, @user3.id, 300] #need to find a way this number will always be unique
+      invitees: [@user2.id, @user3.id, 300]
     }
     @missing_name = {
       start_time: "2025-02-01 10:00:00",
@@ -72,6 +72,14 @@ RSpec.describe "Viewing Parties Endpoint" do
         movie_title: "The Shawshank Redemption",
         invitees: [@user2.id, @user3.id]
       }
+      @too_short = {
+        name: "Juliet's Bday Movie Bash!",
+        start_time: "2025-02-01 10:00:00",
+        end_time: "2025-02-01 10:30:00",
+        movie_id: 278,
+        movie_title: "The Shawshank Redemption",
+        invitees: [@user2.id, @user3.id]
+      }
     @bad_user_id = 236
   end
 
@@ -81,7 +89,7 @@ RSpec.describe "Viewing Parties Endpoint" do
   describe "creating a viewing party" do
     it "happy: can create viewing parties and Users viewing parties" do
       post "/api/v1/viewing_parties/?user_id=#{@user1.id}", params: @testing_params 
-
+      party_created = JSON.parse(response.body, symbolize_names: true)
       expect(response).to be_successful
       party_created = JSON.parse(response.body, symbolize_names: true)
       expect(party_created[:data]).to have_key(:id)
@@ -170,23 +178,28 @@ RSpec.describe "Viewing Parties Endpoint" do
       end
 
       it "duration of movie is greater than duration of party" do
+        post "/api/v1/viewing_parties/?user_id=#{@user2.id}", params: @too_short 
+        error = JSON.parse(response.body, symbolize_names: true)
+        expect(response).not_to be_successful
+        expect(error[:message]).to eq("Movie is too long for viewing party")
+        expect(error[:status]).to eq(400)
 
       end
 
       it "end time is before start time" do
         post "/api/v1/viewing_parties/?user_id=#{@user2.id}", params: @end_before_start 
-        error2 = JSON.parse(response.body, symbolize_names: true)
+        error = JSON.parse(response.body, symbolize_names: true)
         expect(response).not_to be_successful
-        expect(error2[:message]).to eq("End time cannot be before start time")
-        expect(error2[:status]).to eq(400)
+        expect(error[:message]).to eq("End time cannot be before start time")
+        expect(error[:status]).to eq(400)
       end
 
       it "has an invalid user ID as one of the invitees" do
         post "/api/v1/viewing_parties/?user_id=#{@user2.id}", params: @bad_invitees 
-        error2 = JSON.parse(response.body, symbolize_names: true)
+        error = JSON.parse(response.body, symbolize_names: true)
         expect(response).not_to be_successful
-        expect(error2[:message]).to eq("Invitee:300 is invalid")
-        expect(error2[:status]).to eq(400)
+        expect(error[:message]).to eq("Invitee:300 is invalid")
+        expect(error[:status]).to eq(400)
 
       end
     end
