@@ -26,5 +26,10 @@ class ViewingPartyValidator
     raise ArgumentError, "User_id is invalid" unless User.find_by(id: @params[:user_id])
   end
 
-
+  def validate_start_end_time
+    raise ArgumentError, "Invalid or missing start_time or end_time" if @params[:start_time].nil? || params[:end_time].nil?
+    start_time = Time.parse(@params[:start_time])
+    end_time = Time.parse(@params[:end_time])
+    raise ArgumentError, "End time cannot be before start time" unless start_time < end_time
+  end
 end
