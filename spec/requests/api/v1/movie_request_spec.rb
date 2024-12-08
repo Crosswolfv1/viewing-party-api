@@ -37,4 +37,17 @@ RSpec.describe "Movie Endpoint" do
       expect(json_response[:message]).to eq("Query cannot be empty")
     end
   end
+
+  describe "show" do
+    it "returns a specific movie" do
+      get "/api/v1/movies/120"
+
+      expect(response).to be_successful
+
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(json[:data][:id]).to be_a(Integer)
+      expect(json[:data][:attributes]).to have_key(:title)
+      expect(json[:data][:attributes]).to have_key(:runtime)
+    end
+  end
 end
