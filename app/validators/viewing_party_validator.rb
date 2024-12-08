@@ -1,7 +1,4 @@
 class ViewingPartyValidator
-  rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
-  rescue_from ArgumentError, with: :invalid_parameters
-
   def initialize(params)
     @params = params
   end
@@ -27,13 +24,14 @@ class ViewingPartyValidator
   end
 
   def validate_start_end_time
-    raise ArgumentError, "Invalid or missing start_time or end_time" if @params[:start_time].nil? || params[:end_time].nil?
+    raise ArgumentError, "Invalid or missing start_time or end_time" if @params[:start_time].nil? || @params[:end_time].nil?
     start_time = Time.parse(@params[:start_time])
     end_time = Time.parse(@params[:end_time])
     raise ArgumentError, "End time cannot be before start time" unless start_time < end_time
   end
   
   def validate_session_length
+    raise ArgumentError, "Validation failed: Movie can't be blank" unless @params[:movie_id].present?
     movie_duration_raw = MovieSerializer.movie_details(MovieGateway.get_one_movie(@params[:movie_id]))
     movie_duration = movie_duration_raw[:data][:runtime] * 60
     start_time = Time.parse(@params[:start_time])
