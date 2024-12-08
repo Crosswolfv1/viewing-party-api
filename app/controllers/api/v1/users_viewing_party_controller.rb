@@ -2,11 +2,13 @@ class Api::V1::UsersViewingPartyController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   rescue_from ArgumentError, with: :invalid_parameters
   def create
+    UserViewingPartyValidator.new(params).validate_all
+
     UserViewingParty.create!(viewing_party_id: ViewingParty.find(params[:party_id]).id, user_id: User.find(params[:invitees_user_id]).id, host: false)
 
     invitees = User.joins(:user_viewing_parties)
     .where(user_viewing_parties: { viewing_party_id: params[:party_id] })
-    .where.not(user_viewing_parties: { host: true })
+    .where.not(user_viewing_parties: { host: true }).pluck(:id)
 
     render json: ViewingPartySerializer.new(ViewingParty.find(params[:party_id]),
      { params: { invitees: invitees } }
