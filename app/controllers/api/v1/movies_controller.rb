@@ -11,11 +11,17 @@ class Api::V1::MoviesController < ApplicationController
     end
   end
 
+  def show
+    json = MovieGateway.get_one_movie(params[:id])
+    render json: MovieSerializer.movie_details(json)
+  end
+
   private
 
   def validate_params(params)
     raise ArgumentError, "Query cannot be empty" unless params[:query].present?
   end
+  
   def invalid_parameters(exception)
     render json: ErrorSerializer.format_error(ErrorMessage.new(exception, 400)), status: :bad_request
   end
