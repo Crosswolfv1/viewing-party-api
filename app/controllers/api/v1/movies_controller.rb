@@ -11,6 +11,11 @@ class Api::V1::MoviesController < ApplicationController
     end
   end
 
+  def show
+    json = MovieGateway.get_one_movie(params[:id])
+    render json: MovieSerializer.movie_details(json)
+  end
+
   private
 
   def validate_params(params)
