@@ -1,4 +1,4 @@
-class UsersViewingParty < ApplicationRecord
+class UserViewingParty < ApplicationRecord
   belongs_to :user
   belongs_to :viewing_party
 

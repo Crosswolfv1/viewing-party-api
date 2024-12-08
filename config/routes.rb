@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :index]
       resources :sessions, only: :create
       resources :movies, only: [:index, :show]
-      resources :viewing_parties, only: :create, param: :user_id
+      resources :viewing_parties, only: :create, param: :user_id do
+        post 'users_viewing_party/:party_id', to: 'users_viewing_party#create', as: :create_users_viewing_party
+      end      
     end
   end
 end
