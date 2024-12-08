@@ -22,5 +22,9 @@ class ViewingPartyValidator
     end
   end
 
-  
+  def validate_user_id
+    raise ArgumentError, "User_id is invalid" unless User.find_by(id: @params[:user_id])
+  end
+
+
 end
