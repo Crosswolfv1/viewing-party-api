@@ -33,7 +33,7 @@ class ViewingPartyValidator
   def validate_session_length
     raise ArgumentError, "Validation failed: Movie can't be blank" unless @params[:movie_id].present?
     movie_duration_raw = MovieSerializer.movie_details(MovieGateway.get_one_movie(@params[:movie_id]))
-    movie_duration = movie_duration_raw[:data][:runtime] * 60
+    movie_duration = movie_duration_raw[:data][:attributes][:runtime] * 60
     start_time = Time.parse(@params[:start_time])
     end_time = Time.parse(@params[:end_time])
     party_duration = end_time - start_time
