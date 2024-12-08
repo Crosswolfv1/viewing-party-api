@@ -91,7 +91,6 @@ RSpec.describe "Viewing Parties Endpoint" do
       post "/api/v1/viewing_parties/?user_id=#{@user1.id}", params: @testing_params 
       party_created = JSON.parse(response.body, symbolize_names: true)
       expect(response).to be_successful
-      party_created = JSON.parse(response.body, symbolize_names: true)
       expect(party_created[:data]).to have_key(:id)
       expect(party_created[:data][:id]).to be_an(String)
       expect(party_created[:data]).to have_key(:type)
