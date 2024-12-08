@@ -32,4 +32,14 @@ class ViewingPartyValidator
     end_time = Time.parse(@params[:end_time])
     raise ArgumentError, "End time cannot be before start time" unless start_time < end_time
   end
+  
+  def validate_session_length
+    movie_duration_raw = MovieSerializer.movie_details(MovieGateway.get_one_movie(@params[:movie_id]))
+    movie_duration = movie_duration_raw[:data][:runtime] * 60
+    start_time = Time.parse(@params[:start_time])
+    end_time = Time.parse(@params[:end_time])
+    party_duration = end_time - start_time
+
+    raise ArgumentError, "Movie is too long for viewing party" if movie_duration > party_duration
+  end
 end
