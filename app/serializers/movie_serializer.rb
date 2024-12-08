@@ -17,8 +17,12 @@ class MovieSerializer
   def self.movie_details(movie)
     { data: {
       id: movie[:id],
-      title: movie[:original_title],
-      runtime: movie[:runtime]
-    }}
+      type: "movie",
+      attributes: {
+        title: movie[:original_title],
+        runtime: movie[:runtime]
+      }
+    }
+  }
   end
 end
