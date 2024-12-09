@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Users API", type: :request do
   after(:all) do
-    User.all.delete_all
+    User.delete_all
   end
     describe "Create User Endpoint" do
     let(:user_params) do
@@ -89,5 +89,74 @@ RSpec.describe "Users API", type: :request do
       expect(json[:data][0][:attributes]).to_not have_key(:password_digest)
       expect(json[:data][0][:attributes]).to_not have_key(:api_key)
     end
+  end
+
+  describe "Get A single user's profile" do
+    before(:each) do
+      @user1 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
+      @user2 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
+      @user3 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
+      @user4 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
+
+      @params1 = {
+        name: Faker::FunnyName.name,
+        start_time: "2025-02-01 10:00:00",
+        end_time: "2025-02-01 14:30:00",
+        movie_id: 278,
+        movie_title: "The Shawshank Redemption",
+        invitees: [@user2.id, @user3.id]
+      }
+
+      @params2 = {
+        name: Faker::FunnyName.name,
+        start_time: "2025-02-02 10:00:00",
+        end_time: "2025-02-02 14:30:00",
+        movie_id: 120,
+        movie_title: "Lord of the rings",
+        invitees: [@user2.id, @user4.id]
+      }
+
+      @params3 = {
+      name: Faker::FunnyName.name,
+      start_time: "2025-02-03 10:00:00",
+      end_time: "2025-02-03 14:30:00",
+      movie_id: 2164,
+      movie_title: "Stargate",
+      invitees: [@user1.id, @user4.id]
+      }
+
+      post "/api/v1/viewing_parties/?user_id=#{@user1.id}", params: @params1 
+      post "/api/v1/viewing_parties/?user_id=#{@user1.id}", params: @params2 
+      post "/api/v1/viewing_parties/?user_id=#{@user2.id}", params: @params3 
+    end
+
+    it "gets a user" do
+      get "/api/v1/users/#{@user1.id}"
+      expect(response).to be_successful
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:data][:type]).to eq("user")
+      expect(json[:data][:id]).to be_an(Integer)
+      expect(json[:data][:attributes][:name]).to eq(@user1[:name])
+      expect(json[:data][:attributes][:username]).to eq(@user1[:username])
+
+      expect(json[:data][:attributes]).to have_key(:viewing_parties_hosted)
+      expect(json[:data][:attributes][:viewing_parties_hosted].count).to eq(2)
+
+      expect(json[:data][:attributes]).to have_key(:viewing_parties_invited)
+      expect(json[:data][:attributes][:viewing_parties_invited].count).to eq(1)
+
+      expect(json[:data][:attributes]).to_not have_key(:password)
+      expect(json[:data][:attributes]).to_not have_key(:password_confirmation)
+   end
+
+   it "sadpath has bad user ID" do
+    get "/api/v1/users/9999"
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(response).not_to be_successful
+    expect(json[:message]).to eq("Record invalid")
+    expect(json[:status]).to eq(400)
+
+   end
   end
 end
