@@ -59,3 +59,4 @@ group :test do
 end
 
 gem 'simplecov', require: false, group: :test
+gem 'rubocop', '~> 1.69', '>= 1.69.1'
