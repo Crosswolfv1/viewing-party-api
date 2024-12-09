@@ -25,9 +25,9 @@ class MovieSerializer
         runtime: time_conversion(movie[:runtime]),
         genres: genres(movie[:genres]),
         summary: movie[:overview],
-        cast: cast(movie[:credits][:cast]), #needs to be an array ob objects w/ key value pairs 10 max
+        cast: cast(movie[:credits][:cast]), 
         total_reviews: movie[:reviews][:total_results],
-        reviews: reviews(movie[:reviews][:results]) #needs to be an array ob objects w/ key value pairs 5 max
+        reviews: reviews(movie[:reviews][:results]) 
       }
     }
   }
