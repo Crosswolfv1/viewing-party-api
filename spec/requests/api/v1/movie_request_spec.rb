@@ -39,7 +39,7 @@ RSpec.describe "Movie Endpoint" do
   end
 
   describe "show" do
-    it "returns a specific movie" do
+    it "returns a specific movie", :vcr do
       get "/api/v1/movies/120"
 
       expect(response).to be_successful
