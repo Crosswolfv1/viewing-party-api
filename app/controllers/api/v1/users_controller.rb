@@ -1,4 +1,6 @@
 class Api::V1::UsersController < ApplicationController
+  rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+
   def create
     user = User.new(user_params)
     if user.save
@@ -12,9 +14,18 @@ class Api::V1::UsersController < ApplicationController
     render json: UserSerializer.format_user_list(User.all)
   end
 
+  def show
+    raise ActiveRecord::RecordInvalid unless User.find_by(id: params[:id])
+    render json: UserSerializer.user_details(params[:id])
+  end
+
   private
 
   def user_params
     params.permit(:name, :username, :password, :password_confirmation)
+  end
+
+  def record_invalid(exception)
+    render json: ErrorSerializer.format_error(ErrorMessage.new(exception, 400)), status: :bad_request
   end
 end
