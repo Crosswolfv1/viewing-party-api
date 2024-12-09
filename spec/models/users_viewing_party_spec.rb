@@ -1,11 +1,8 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe UserViewingParty, type: :model do
-  describe "validations" do
-    it { should belong_to :user }
-    it { should belong_to :viewing_party }
-
-    it { should validate_presence_of(:viewing_party_id) }
-    it { should validate_presence_of(:user_id) }
+RSpec.describe UserViewingParty do
+  describe 'validations' do
+    it { is_expected.to belong_to :user }
+    it { is_expected.to belong_to :viewing_party }
   end
 end

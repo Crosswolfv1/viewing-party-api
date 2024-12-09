@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Movie
   attr_reader :id,
-  :title,
-  :vote_average
+              :title,
+              :vote_average
 
   def initialize(movie_json)
     @id = movie_json[:id]

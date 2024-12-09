@@ -1,0 +1,8 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-rspec_rails
+  - rubocop-ast
+
+AllCops:
+  NewCops: enable

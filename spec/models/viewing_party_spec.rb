@@ -1,14 +1,16 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe ViewingParty, type: :model do
-  describe "validations" do
-    it { should have_many :user_viewing_parties }
-    it { should have_many(:users).through(:user_viewing_parties) }
+require 'rails_helper'
 
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:start_time) }
-    it { should validate_presence_of(:end_time) }
-    it { should validate_presence_of(:movie_id) }
-    it { should validate_presence_of(:movie_title) }
+RSpec.describe ViewingParty do
+  describe 'validations' do
+    it { is_expected.to have_many :user_viewing_parties }
+    it { is_expected.to have_many(:users).through(:user_viewing_parties) }
+
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:start_time) }
+    it { is_expected.to validate_presence_of(:end_time) }
+    it { is_expected.to validate_presence_of(:movie_id) }
+    it { is_expected.to validate_presence_of(:movie_title) }
   end
 end

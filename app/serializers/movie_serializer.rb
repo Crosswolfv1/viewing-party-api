@@ -1,23 +1,23 @@
+# frozen_string_literal: true
+
 class MovieSerializer
   def self.format_movie(movies_list)
-
     { data: movies_list.map do |result|
-        {
-          id: result.id,
-          type: "movie",
-          attributes: {
-            title: result.title,
-            vote_average: result.vote_average
-          }
+      {
+        id: result.id,
+        type: 'movie',
+        attributes: {
+          title: result.title,
+          vote_average: result.vote_average
         }
-    end
-  }
+      }
+    end }
   end
 
   def self.movie_details(movie)
     { data: {
       id: movie[:id],
-      type: "movie",
+      type: 'movie',
       attributes: {
         title: movie[:original_title],
         release_year: movie[:release_date].split('-').first.to_i,
@@ -25,26 +25,21 @@ class MovieSerializer
         runtime: time_conversion(movie[:runtime]),
         genres: genres(movie[:genres]),
         summary: movie[:overview],
-        cast: cast(movie[:credits][:cast]), 
+        cast: cast(movie[:credits][:cast]),
         total_reviews: movie[:reviews][:total_results],
-        reviews: reviews(movie[:reviews][:results]) 
+        reviews: reviews(movie[:reviews][:results])
       }
-    }
-  }
+    } }
   end
-
-  private
 
   def self.time_conversion(minutes)
     hours = minutes / 60
     rest = minutes % 60
-    return "#{hours} hours, #{rest} minutes"
+    "#{hours} hours, #{rest} minutes"
   end
 
   def self.genres(genres)
-    genres.map do |genre|
-      genre[:name]
-    end
+    genres.pluck(:name)
   end
 
   def self.cast(cast_members)
