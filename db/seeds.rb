@@ -7,49 +7,70 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-@user1 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
-@user2 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
-@user3 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
-@user4 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
+# Users
+user1 = User.find_or_create_by!(username: "danny_de_v") do |user|
+  user.name = "Danny DeVito"
+  user.password = "jerseyMikesRox7"
+end
 
-@party1 = ViewingParty.create!(
-  name: Faker::FunnyName.name,
-  start_time: "2025-02-01 10:00:00",
-  end_time: "2025-02-01 14:30:00",
-  movie_id: 278,
-  movie_title: "The Shawshank Redemption"
-)
-@party2 = ViewingParty.create!(
-  name: Faker::FunnyName.name,
-  start_time: "2025-02-02 10:00:00",
-  end_time: "2025-02-02 14:30:00",
-  movie_id: 120,
-  movie_title: "Lord of the rings"
-)
-@party3 = ViewingParty.create!(
-  name: Faker::FunnyName.name,
-  start_time: "2025-02-03 10:00:00",
-  end_time: "2025-02-03 14:30:00",
-  movie_id: 2164,
-  movie_title: "Stargate"
-)
+user2 = User.find_or_create_by!(username: "dollyP") do |user|
+  user.name = "Dolly Parton"
+  user.password = "Jolene123"
+end
 
-UserViewingParty.create!(user: @user1, viewing_party: @party1, host: true)
-UserViewingParty.create!(user: @user2, viewing_party: @party1, host: false)
-UserViewingParty.create!(user: @user3, viewing_party: @party1, host: false)
+user3 = User.find_or_create_by!(username: "futbol_geek") do |user|
+  user.name = "Lionel Messi"
+  user.password = "test123"
+end
 
-UserViewingParty.create!(user: @user1, viewing_party: @party2, host: true)
-UserViewingParty.create!(user: @user4, viewing_party: @party2, host: false)
+user4 = User.find_or_create_by!(username: "morgan_f") do |user|
+  user.name = "Morgan Freeman"
+  user.password = "VoiceOfGod99"
+end
 
-UserViewingParty.create!(user: @user2, viewing_party: @party3, host: true)
-UserViewingParty.create!(user: @user1, viewing_party: @party3, host: false)
-UserViewingParty.create!(user: @user4, viewing_party: @party3, host: false)
-User.create!(name: "Danny DeVito", username: "danny_de_v", password: "jerseyMikesRox7")
-User.create!(name: "Dolly Parton", username: "dollyP", password: "Jolene123")
-User.create!(name: "Lionel Messi", username: "futbol_geek", password: "test123")
-User.create!(name: "Morgan Freeman", username: "morgan_f", password: "VoiceOfGod99")
-User.create!(name: "Emma Stone", username: "emma_stone_94", password: "LaLaLand@2024")
-User.create!(name: "Chris Hemsworth", username: "thor_4eva", password: "HammerTime123")
-User.create!(name: "Beyoncé Knowles", username: "beyonce_queen", password: "RunTheWorld1")
-User.create!(name: "Keanu Reeves", username: "theone_keanu", password: "MatrixRules007")
-User.create!(name: "Oprah Winfrey", username: "oprah_w", password: "YouGetACar2024")
+additional_users = [
+  { name: "Emma Stone", username: "emma_stone_94", password: "LaLaLand@2024" },
+  { name: "Chris Hemsworth", username: "thor_4eva", password: "HammerTime123" },
+  { name: "Beyoncé Knowles", username: "beyonce_queen", password: "RunTheWorld1" },
+  { name: "Keanu Reeves", username: "theone_keanu", password: "MatrixRules007" },
+  { name: "Oprah Winfrey", username: "oprah_w", password: "YouGetACar2024" }
+]
+
+additional_users.each do |user_data|
+  User.find_or_create_by!(username: user_data[:username]) do |user|
+    user.name = user_data[:name]
+    user.password = user_data[:password]
+  end
+end
+
+party1 = ViewingParty.find_or_create_by!(name: "Shawshank Escape Party") do |party|
+  party.start_time = "2025-02-01 10:00:00"
+  party.end_time = "2025-02-01 14:30:00"
+  party.movie_id = 278
+  party.movie_title = "The Shawshank Redemption"
+end
+
+party2 = ViewingParty.find_or_create_by!(name: "Ring Quest Party") do |party|
+  party.start_time = "2025-02-02 10:00:00"
+  party.end_time = "2025-02-02 14:30:00"
+  party.movie_id = 120
+  party.movie_title = "Lord of the Rings"
+end
+
+party3 = ViewingParty.find_or_create_by!(name: "Stargate Adventure Party") do |party|
+  party.start_time = "2025-02-03 10:00:00"
+  party.end_time = "2025-02-03 14:30:00"
+  party.movie_id = 2164
+  party.movie_title = "Stargate"
+end
+
+UserViewingParty.find_or_create_by!(user: user1, viewing_party: party1) { |party| party.host = true }
+UserViewingParty.find_or_create_by!(user: user2, viewing_party: party1) { |party| party.host = false }
+UserViewingParty.find_or_create_by!(user: user3, viewing_party: party1) { |party| party.host = false }
+
+UserViewingParty.find_or_create_by!(user: user1, viewing_party: party2) { |party| party.host = true }
+UserViewingParty.find_or_create_by!(user: user4, viewing_party: party2) { |party| party.host = false }
+
+UserViewingParty.find_or_create_by!(user: user2, viewing_party: party3) { |party| party.host = true }
+UserViewingParty.find_or_create_by!(user: user1, viewing_party: party3) { |party| party.host = false }
+UserViewingParty.find_or_create_by!(user: user4, viewing_party: party3) { |party| party.host = false }
