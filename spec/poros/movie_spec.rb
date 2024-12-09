@@ -9,6 +9,5 @@ RSpec.describe Movie do
     expect(result_movie.id).to eq(567904)
     expect(result_movie.title).to eq("Pineapple")
     expect(result_movie.vote_average).to eq(0.0)
-
   end
 end

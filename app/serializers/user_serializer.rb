@@ -16,4 +16,19 @@ class UserSerializer
         end
     }
   end
+
+  def self.user_details(user_id)
+    user = User.find(user_id)
+    { data: {
+      id: user[:id],
+      type: "user",
+      attributes: {
+        name: user[:name],
+        username: user[:username],
+        viewing_parties_hosted: user.hosted_viewing_party,
+        viewing_parties_invited: user.invited_viewing_party
+      }
+      }
+    }
+  end
 end
