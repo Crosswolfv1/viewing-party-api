@@ -16,3 +16,40 @@ User.create!(name: "Chris Hemsworth", username: "thor_4eva", password: "HammerTi
 User.create!(name: "Beyoncé Knowles", username: "beyonce_queen", password: "RunTheWorld1")
 User.create!(name: "Keanu Reeves", username: "theone_keanu", password: "MatrixRules007")
 User.create!(name: "Oprah Winfrey", username: "oprah_w", password: "YouGetACar2024")
+@user1 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
+@user2 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
+@user3 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
+@user4 = User.create!(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true))
+
+@party1 = ViewingParty.create!(
+  name: Faker::FunnyName.name,
+  start_time: "2025-02-01 10:00:00",
+  end_time: "2025-02-01 14:30:00",
+  movie_id: 278,
+  movie_title: "The Shawshank Redemption"
+)
+@party2 = ViewingParty.create!(
+  name: Faker::FunnyName.name,
+  start_time: "2025-02-02 10:00:00",
+  end_time: "2025-02-02 14:30:00",
+  movie_id: 120,
+  movie_title: "Lord of the rings"
+)
+@party3 = ViewingParty.create!(
+  name: Faker::FunnyName.name,
+  start_time: "2025-02-03 10:00:00",
+  end_time: "2025-02-03 14:30:00",
+  movie_id: 2164,
+  movie_title: "Stargate"
+)
+
+UserViewingParty.create!(user: @user1, viewing_party: @party1, host: true)
+UserViewingParty.create!(user: @user2, viewing_party: @party1, host: false)
+UserViewingParty.create!(user: @user3, viewing_party: @party1, host: false)
+
+UserViewingParty.create!(user: @user1, viewing_party: @party2, host: true)
+UserViewingParty.create!(user: @user4, viewing_party: @party2, host: false)
+
+UserViewingParty.create!(user: @user2, viewing_party: @party3, host: true)
+UserViewingParty.create!(user: @user1, viewing_party: @party3, host: false)
+UserViewingParty.create!(user: @user4, viewing_party: @party3, host: false)
