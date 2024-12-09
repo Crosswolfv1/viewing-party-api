@@ -45,9 +45,39 @@ RSpec.describe "Movie Endpoint" do
       expect(response).to be_successful
 
       json = JSON.parse(response.body, symbolize_names: true)
-      expect(json[:data][:id]).to be_a(Integer)
+      expect(json[:data][:id]).to be_an(Integer) 
+      expect(json[:data][:type]).to eq("movie")
+      
       expect(json[:data][:attributes]).to have_key(:title)
+      expect(json[:data][:attributes][:title]).to be_a(String)
+
+      expect(json[:data][:attributes]).to have_key(:release_year)
+      expect(json[:data][:attributes][:release_year]).to be_a(Integer)
+      
+      expect(json[:data][:attributes]).to have_key(:vote_average)
+      expect(json[:data][:attributes][:vote_average]).to be_a(Float)
+      
       expect(json[:data][:attributes]).to have_key(:runtime)
+      expect(json[:data][:attributes][:runtime]).to be_a(String)
+      
+      expect(json[:data][:attributes]).to have_key(:genres)
+      expect(json[:data][:attributes][:genres]).to be_an(Array)
+      
+      expect(json[:data][:attributes]).to have_key(:summary)
+      expect(json[:data][:attributes][:summary]).to be_a(String)
+      
+      expect(json[:data][:attributes]).to have_key(:cast)
+      expect(json[:data][:attributes][:cast].length).to be <= 10
+      expect(json[:data][:attributes][:cast].first).to have_key(:character)
+      expect(json[:data][:attributes][:cast].first).to have_key(:actor)
+      
+      expect(json[:data][:attributes]).to have_key(:total_reviews)
+      expect(json[:data][:attributes][:total_reviews]).to be_an(Integer)
+      
+      expect(json[:data][:attributes]).to have_key(:reviews)
+      expect(json[:data][:attributes][:reviews].length).to be <= 5
+      expect(json[:data][:attributes][:reviews].first).to have_key(:author)
+      expect(json[:data][:attributes][:reviews].first).to have_key(:review)
     end
   end
 end
