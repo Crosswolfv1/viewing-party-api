@@ -16,7 +16,7 @@ class MovieGateway
   end
 
   def self.get_one_movie(query)
-    response = conn.get("/3/movie/#{query}", { api_key: Rails.application.credentials.moviedb[:key]})
+    response = conn.get("/3/movie/#{query}?append_to_response=credits,reviews", { api_key: Rails.application.credentials.moviedb[:key]})
     JSON.parse(response.body, symbolize_names: true)
   end
 

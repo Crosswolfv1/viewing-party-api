@@ -20,9 +20,48 @@ class MovieSerializer
       type: "movie",
       attributes: {
         title: movie[:original_title],
-        runtime: movie[:runtime]
+        release_year: movie[:release_date].split('-').first.to_i,
+        vote_average: movie[:vote_average],
+        runtime: time_conversion(movie[:runtime]),
+        genres: genres(movie[:genres]),
+        summary: movie[:overview],
+        cast: cast(movie[:credits][:cast]), 
+        total_reviews: movie[:reviews][:total_results],
+        reviews: reviews(movie[:reviews][:results]) 
       }
     }
   }
+  end
+
+  private
+
+  def self.time_conversion(minutes)
+    hours = minutes / 60
+    rest = minutes % 60
+    return "#{hours} hours, #{rest} minutes"
+  end
+
+  def self.genres(genres)
+    genres.map do |genre|
+      genre[:name]
+    end
+  end
+
+  def self.cast(cast_members)
+    cast_members.first(10).map do |cast|
+      {
+        character: cast[:character],
+        actor: cast[:name]
+      }
+    end
+  end
+
+  def self.reviews(reviews)
+    reviews.first(5).map do |review|
+      {
+        author: review[:author],
+        review: review[:content]
+      }
+    end
   end
 end
